@@ -1,0 +1,16 @@
+[project]
+name = "poisson-nufft"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "finufft>=2.4.1",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.2",
+    "psutil>=7.2.2",
+    "pyscf>=2.12.1",
+    "qc-grid>=0.0.9.post1",
+    "scipy>=1.17.1",
+    "seaborn>=0.13.2",
+]
