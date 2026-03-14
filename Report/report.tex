@@ -42,12 +42,10 @@
 % ── Title ──
 \title{
     \vspace{-1cm}
-    \textbf{Benchmarking Numerical Methods for Electron Repulsion Integrals: \\[4pt]
-    From Direct Summation to Poisson--NUFFT Solvers}
+    \textbf{Quantum Chemistry Project Report: Benchmarking Numerical Methods for Electron Repulsion Integrals}
 }
 \author{
     Mohammad Ahmad: 2074000
-
     Supervisor: Dr Johannes Margraf
 }
 \date{\today}
@@ -55,8 +53,8 @@
 \begin{document}
 
 \maketitle
-\thispagestyle{empty}
 
+\newpage
 \begin{abstract}
 Electron repulsion integrals (ERIs) constitute the primary computational bottleneck in quantum chemistry simulations, scaling as $\mathcal{O}(N^4)$ in conventional analytical approaches. This report presents a systematic benchmark of seven numerical methods for computing ERIs, ranging from brute-force direct summation in real space through uniform Fast Fourier Transforms (FFT) to Non-Uniform Fast Fourier Transform (NUFFT) techniques and a two-step Poisson--NUFFT solver. We evaluate each method on the hydrogen molecule H$_2$ using the \texttt{def2-svp} basis set, measuring absolute error against the analytical PySCF reference, wall-clock time, and peak memory consumption as the grid resolution parameter $N$ increases. Our results demonstrate that the Poisson two-step method with a spherical $k$-space grid achieves the fastest convergence, reaching errors below $10^{-3}$ at moderate grid sizes, while maintaining competitive computational cost. We discuss the mathematical foundations of each approach, analyse convergence behaviour, and suggest directions for future work including extension to multi-centre integrals and GPU acceleration.
 \end{abstract}
@@ -371,7 +369,7 @@ The NUFFT tolerance parameter $\varepsilon$ plays a critical role. In the one-st
 \label{sec:conclusion}
 %==========================================================================
 
-In order to reduce complex electron repulsion integrals with time complexity reaching upto $\mathcal{O}(N^2)$ we have to utilize numerical methods to calculate these integrals. Overall, a construction of these integrals is first done analytically using GTO orbitals in PySCF. In order to calculate these integrals numerically, we have to discretize the integral using quadrature rules. We have used three types of grids: Cartesian, Becke and spherical. The Cartesian grid is a simple uniform grid that covers a cubic domain, while the Becke grid is an atom-centred grid that concentrates points near the nuclei, and the spherical grid is a non-uniform grid in $k$-space that exploits the isotropy of the Coulomb kernel. Methods utilizing fourier transforms (FFT and NUFFT) are used to compute the ERIs in $k$-space, while direct summation methods are used in real space. The two-step Poisson--NUFFT method is a hybrid approach that first computes an intermediate potential in $k$-space and then transforms back to real space for final integration. Two-step poisson method with spherical $k$-grid achieves the best convergence and accuracy due to its ability to handle the Coulomb singularity and exploit the isotropy of the kernel. The one-step NUFFT method with spherical $k$-grid also performs well, but is limited by the single transform approximation. Direct methods and uniform FFT are less accurate and less efficient due to their inability to adapt to the molecular geometry and handle singularities effectively. Future work could extend these methods to multi-centre integrals, explore GPU acceleration for the NUFFT, and investigate error bounds and convergence rates in more detail.
+In order to reduce complex electron repulsion integrals with time complexity reaching upto $\mathcal{O}(N^2)$ we have to utilize numerical methods to calculate these integrals. Overall, a construction of these integrals is first done analytically using GTO orbitals in PySCF. In order to calculate these integrals numerically, we have to discretize the integral using quadrature rules. We have used three types of grids: Cartesian, Becke and spherical. The Cartesian grid is a simple uniform grid that covers a cubic domain, while the Becke grid is an atom-centred grid that concentrates points near the nuclei, and the spherical grid is a non-uniform grid in $k$-space that exploits the isotropy of the Coulomb kernel. Methods utilizing fourier transforms (FFT and NUFFT) are used to compute the ERIs in $k$-space, while direct summation methods are used in real space. The two-step Poisson--NUFFT method is a hybrid approach that first computes an intermediate potential in $k$-space and then transforms back to real space for final integration. Two-step poisson method with spherical $k$-grid achieves the best convergence and accuracy due to its ability to handle the Coulomb singularity and exploit the isotropy of the kernel. The one-step NUFFT method with spherical $k$-grid also performs well, but is limited by the single transform approximation. Direct methods and uniform FFT are less accurate and less efficient due to their inability to adapt to the molecular geometry and handle singularities effectively. Results of the experiment show that both NUFFT techniques show used superior convergence and accuracy compared to direct methods and uniform FFT. However, two-step and one-step methods show similar convergence rates, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
