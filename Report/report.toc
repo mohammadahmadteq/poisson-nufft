@@ -14,12 +14,8 @@
 \contentsline {paragraph}{Direct methods (1--2).}{9}{section*.4}%
 \contentsline {paragraph}{Uniform FFT (3).}{9}{section*.5}%
 \contentsline {paragraph}{NUFFT one-step methods (4--5).}{9}{section*.6}%
-\contentsline {paragraph}{Poisson two-step methods (6--7).}{10}{section*.7}%
+\contentsline {paragraph}{Poisson two-step methods (6--7).}{9}{section*.7}%
 \contentsline {subsection}{\numberline {4.2}Computational Cost}{10}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Memory Usage}{10}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Discussion}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Why the Poisson Two-Step Method Excels}{10}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Limitations of the Direct and FFT Methods}{11}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Cartesian versus Spherical $k$-Space Grids}{11}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Numerical Stability Considerations}{11}{subsection.5.4}%
 \contentsline {section}{\numberline {6}Conclusion}{11}{section.6}%
