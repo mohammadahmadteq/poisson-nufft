@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 15:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1251,16 +1251,37 @@ l.1028 \newcommand\citename{}
 ) (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 19.
+Package hyperref Info: Option `colorlinks' set `true' on input line 17.
 
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
+Runaway argument?
+{ Mohammad Ahmad: 2074000 
+! Paragraph ended before \author  was complete.
+<to be read again> 
+                   \par 
+l.50 
+     
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51     S
+          upervisor: Dr Johannes Margraf
+? 
+! Too many }'s.
+l.52 }
+      
+? 
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-
 
 ! Package biblatex Error: Incompatible package 'natbib'.
 
@@ -1378,6 +1399,18 @@ Package hyperref Info: Link coloring ON on input line 55.
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
+ts/enc/dvips/cm-super/cm-super-t1.enc}
+
+]
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 58
 .
 
@@ -1395,10 +1428,11 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./report.toc [1
+)
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
-/enc/dvips/cm-super/cm-super-t1.enc}])
+LaTeX Warning: No \author given.
+
+[2] (./report.toc)
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
@@ -1410,19 +1444,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [3]
-
-Package natbib Warning: Citation `barnett2019' on page 4 undefined on input lin
-e 146.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1432,8 +1454,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4]
 
+Package natbib Warning: Citation `barnett2019' on page 5 undefined on input lin
+e 139.
+
+
 Package natbib Warning: Citation `becke1988' on page 5 undefined on input line 
-181.
+169.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1444,14 +1470,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [5]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 193.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 193.
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
@@ -1461,10 +1479,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [6]
 
 Package natbib Warning: Citation `vico2016' on page 7 undefined on input line 2
-44.
+22.
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 247.
+put line 225.
+
+Package natbib Warning: Citation `sun2018' on page 7 undefined on input line 24
+9.
+
+
+Package natbib Warning: Citation `barnett2019' on page 7 undefined on input lin
+e 251.
+
+
+Package natbib Warning: Citation `weigend2005' on page 7 undefined on input lin
+e 257.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1472,32 +1502,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[7]
-
-Package natbib Warning: Citation `sun2018' on page 8 undefined on input line 27
-1.
-
-
-Package natbib Warning: Citation `barnett2019' on page 8 undefined on input lin
-e 273.
-
-
-Package natbib Warning: Citation `weigend2005' on page 8 undefined on input lin
-e 279.
-
+[7{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 285.
+nput line 263.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 286.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 264.
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[8{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (8.50415pt too wide) in paragraph at lines 316--317
+Overfull \hbox (8.50415pt too wide) in paragraph at lines 294--295
 []\T1/cmr/m/n/12 The \T1/cmr/bx/n/12 spher-i-cal $\OML/cmm/m/it/12 k$\T1/cmr/bx
 /n/12 -grid \T1/cmr/m/n/12 uses $\OML/cmm/m/it/12 N$ \T1/cmr/m/n/12 Gauss--Lege
 ndre ra-dial points on $\OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; k[]\OT1/cmr/m/n/12
@@ -1512,9 +1523,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
+[8]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [9]
 
-LaTeX Warning: File `eri_benchmark.png' not found on input line 392.
+LaTeX Warning: File `eri_benchmark.png' not found on input line 370.
 
 
 ! Package pdftex.def Error: File `eri_benchmark.png' not found: using draft set
@@ -1524,7 +1543,7 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.392 ...hics[width=\textwidth]{eri_benchmark.png}
+l.370 ...hics[width=\textwidth]{eri_benchmark.png}
                                                   
 ? 
 
@@ -1544,6 +1563,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [11]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 421.
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
@@ -1551,37 +1578,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 443.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 443.
-
-
-Overfull \hbox (0.35399pt too wide) in paragraph at lines 447--448
+Overfull \hbox (0.35399pt too wide) in paragraph at lines 425--426
 []\T1/cmr/m/n/12 Furthermore, the Carte-sian $\OML/cmm/m/it/12 k$\T1/cmr/m/n/12
  -grid in-tro-duces a reg-u-lar-i-sa-tion prob-lem at $\OT1/cmr/bx/n/12 k \OT1/
 cmr/m/n/12 = \OT1/cmr/bx/n/12 0$ \T1/cmr/m/n/12 (the Coulomb
  []
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[14]
 
 ! Package biblatex Error: '\bibliographystyle' invalid for 'biblatex'.
 
@@ -1589,7 +1591,7 @@ See the biblatex package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.499 \bibliographystyle{unsrtnat}
+l.452 \bibliographystyle{unsrtnat}
                                   
 ? 
 
@@ -1599,7 +1601,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.500 \bibliography
+l.453 \bibliography
                    {references}
 ? 
 
@@ -1612,29 +1614,25 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[15] (./report.aux)
+[13] (./report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 26F16091B2AEB66CEAA6061AD4442F05;6461.
+(rerunfilecheck)             Checksum: FDBEDA974B15E40B692356339430146E;3380.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47263 strings out of 469515
- 1027637 string characters out of 5470808
- 2109449 words of memory out of 5000000
- 75140 multiletter control sequences out of 15000+600000
+ 47234 strings out of 469515
+ 1027153 string characters out of 5470808
+ 2211751 words of memory out of 5000000
+ 75127 multiletter control sequences out of 15000+600000
  651136 words of font info for 106 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,12n,108p,1209b,2297s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,108p,1209b,2107s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/
@@ -1659,10 +1657,10 @@ ic/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfr
 m1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr
 /share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-di
 st/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (15 pages, 512745 bytes).
+Output written on report.pdf (13 pages, 501822 bytes).
 PDF statistics:
- 491 PDF objects out of 1000 (max. 8388607)
- 410 compressed objects within 5 object streams
- 108 named destinations out of 1000 (max. 500000)
- 285 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 414 PDF objects out of 1000 (max. 8388607)
+ 336 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 
