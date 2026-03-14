@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1455,11 +1455,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [4]
 
 Package natbib Warning: Citation `barnett2019' on page 5 undefined on input lin
-e 139.
+e 138.
 
 
 Package natbib Warning: Citation `becke1988' on page 5 undefined on input line 
-169.
+160.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1479,22 +1479,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [6]
 
 Package natbib Warning: Citation `vico2016' on page 7 undefined on input line 2
-22.
+13.
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 225.
+put line 216.
 
 Package natbib Warning: Citation `sun2018' on page 7 undefined on input line 24
-9.
+0.
 
 
 Package natbib Warning: Citation `barnett2019' on page 7 undefined on input lin
-e 251.
+e 242.
 
 
 Package natbib Warning: Citation `weigend2005' on page 7 undefined on input lin
-e 257.
+e 248.
 
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 254.
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 255.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1503,12 +1507,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [7{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 263.
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 264.
-
-Overfull \hbox (8.50415pt too wide) in paragraph at lines 294--295
+Overfull \hbox (8.50415pt too wide) in paragraph at lines 285--286
 []\T1/cmr/m/n/12 The \T1/cmr/bx/n/12 spher-i-cal $\OML/cmm/m/it/12 k$\T1/cmr/bx
 /n/12 -grid \T1/cmr/m/n/12 uses $\OML/cmm/m/it/12 N$ \T1/cmr/m/n/12 Gauss--Lege
 ndre ra-dial points on $\OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; k[]\OT1/cmr/m/n/12
@@ -1524,6 +1523,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [8]
+<eri_benchmark.png, id=208, 1849.6302pt x 552.6246pt>
+File: eri_benchmark.png Graphic file (type png)
+<use eri_benchmark.png>
+Package pdftex.def Info: eri_benchmark.png  used on input line 361.
+(pdftex.def)             Requested size: 469.47049pt x 140.2639pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1533,27 +1538,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [9]
 
-LaTeX Warning: File `eri_benchmark.png' not found on input line 370.
-
-
-! Package pdftex.def Error: File `eri_benchmark.png' not found: using draft set
-ting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.370 ...hics[width=\textwidth]{eri_benchmark.png}
-                                                  
-? 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10]
+[10 <./eri_benchmark.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1564,11 +1555,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 412.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 412.
+
+
+Overfull \hbox (0.35399pt too wide) in paragraph at lines 416--417
+[]\T1/cmr/m/n/12 Furthermore, the Carte-sian $\OML/cmm/m/it/12 k$\T1/cmr/m/n/12
+ -grid in-tro-duces a reg-u-lar-i-sa-tion prob-lem at $\OT1/cmr/bx/n/12 k \OT1/
+cmr/m/n/12 = \OT1/cmr/bx/n/12 0$ \T1/cmr/m/n/12 (the Coulomb
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1578,12 +1576,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
-Overfull \hbox (0.35399pt too wide) in paragraph at lines 425--426
-[]\T1/cmr/m/n/12 Furthermore, the Carte-sian $\OML/cmm/m/it/12 k$\T1/cmr/m/n/12
- -grid in-tro-duces a reg-u-lar-i-sa-tion prob-lem at $\OT1/cmr/bx/n/12 k \OT1/
-cmr/m/n/12 = \OT1/cmr/bx/n/12 0$ \T1/cmr/m/n/12 (the Coulomb
- []
-
 
 ! Package biblatex Error: '\bibliographystyle' invalid for 'biblatex'.
 
@@ -1591,7 +1583,7 @@ See the biblatex package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.452 \bibliographystyle{unsrtnat}
+l.443 \bibliographystyle{unsrtnat}
                                   
 ? 
 
@@ -1601,7 +1593,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.453 \bibliography
+l.444 \bibliography
                    {references}
 ? 
 
@@ -1619,48 +1611,62 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: FDBEDA974B15E40B692356339430146E;3380.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report.out':
+(rerunfilecheck)             Before: FDBEDA974B15E40B692356339430146E;3380
+(rerunfilecheck)             After:  C45F24BED61F6A11DAC05EF0C6E598EC;3272.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47234 strings out of 469515
- 1027153 string characters out of 5470808
- 2211751 words of memory out of 5000000
- 75127 multiletter control sequences out of 15000+600000
+ 47210 strings out of 469515
+ 1026520 string characters out of 5470808
+ 2121751 words of memory out of 5000000
+ 75107 multiletter control sequences out of 15000+600000
  651136 words of font info for 106 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,12n,108p,1209b,2107s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
-per/sfbx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pf
-b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/t
-exmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts
-/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/c
-m-super/sfit1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm060
-0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/f
-onts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfr
-m1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr
-/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 501822 bytes).
+ 99i,12n,108p,1209b,2221s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{subsection.1.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfbx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
+super/sfit1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0600.
+pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share
+/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fon
+ts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1/public
+/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1
+440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-dist
+/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on report.pdf (13 pages, 834151 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 336 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 412 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
 
