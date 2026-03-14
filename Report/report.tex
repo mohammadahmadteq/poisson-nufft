@@ -347,7 +347,7 @@ The right panel shows peak memory consumption. Direct methods are memory-intensi
 \section{Discussion}
 \label{sec:discussion}
 %==========================================================================
-As observed in the figures, The superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) and Method 5 (one-step Nufft with spherical $k$-grid) can be understood from several mathematical perspectives. However, before we discuss there superiority, it is important to understand the limitations of the other methods. we have to address the fact that both of them have overlapping convergence rates. This is because mathematically, the two-step poisson method eventually takes the same form as the one-step method, but with an additional forward and inverse transform. Hence, the convergence rates are expected to be similar, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation, as explained below.
+As observed in the figures, The superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) and Method 5 (one-step Nufft with spherical $k$-grid) can be understood from several mathematical perspectives. However, before we discuss there superiority, we have to address the fact that both of them have overlapping convergence rates. This is because mathematically, the two-step poisson method eventually takes the same form as the one-step method, but with an additional forward and inverse transform. Hence, the convergence rates are expected to be similar, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation, as explained below.
 
 First, the two-step formulation separates the forward transform, kernel application, and inverse transform into distinct stages. This means the NUFFT approximation error enters twice but affects different quantities: the forward transform approximates $\widetilde{G}(\mathbf{k})$ and the inverse transform reconstructs $V^{(g)}(\mathbf{r})$. Because $V^{(g)}(\mathbf{r})$ is a smooth Coulomb potential (no cusps or singularities away from the nuclei), the inverse NUFFT achieves high accuracy, and the final real-space integration on the Becke grid is exact to high order.
 
@@ -371,20 +371,7 @@ The NUFFT tolerance parameter $\varepsilon$ plays a critical role. In the one-st
 \label{sec:conclusion}
 %==========================================================================
 
-This study benchmarked seven numerical methods for computing electron repulsion integrals on the H$_2$ molecule. Our principal findings are as follows:
-
-\begin{enumerate}
-    \item The \textbf{Poisson two-step NUFFT with spherical $k$-space quadrature} (Method 7) achieves the best accuracy--efficiency trade-off, converging below $10^{-3}$ absolute error with moderate grid sizes and competitive wall-clock times. The analytical cancellation of the $k^2$ Jacobian with the Coulomb kernel singularity is the key mathematical insight enabling this performance.
-
-    \item \textbf{Becke molecular grids} in real space consistently outperform uniform Cartesian grids across all methods that use them, confirming that adaptive, atom-centred quadrature is essential for molecular integrals.
-
-    \item \textbf{Spherical $k$-grids} outperform Cartesian $k$-grids in both accuracy and efficiency, due to better alignment with the isotropic Coulomb kernel and natural singularity cancellation.
-
-    \item \textbf{Direct summation} methods, while useful as baselines, are impractical beyond small grid sizes due to $\mathcal{O}(N^2)$ scaling.
-
-    \item The \textbf{uniform FFT} serves as a middle ground but is fundamentally limited by its inability to adapt to non-uniform density distributions.
-\end{enumerate}
-
+In order to reduce complex electron repulsion integrals with time complexity reaching upto $\mathcal{O}(N^2)$ we have to utilize numerical methods to calculate these integrals. Overall, a construction of these integrals is first done analytically using GTO orbitals in PySCF. In order to calculate these integrals numerically, we have to discretize the integral using quadrature rules. We have used three types of grids: Cartesian, Becke and spherical. The Cartesian grid is a simple uniform grid that covers a cubic domain, while the Becke grid is an atom-centred grid that concentrates points near the nuclei, and the spherical grid is a non-uniform grid in $k$-space that exploits the isotropy of the Coulomb kernel. Methods utilizing fourier transforms (FFT and NUFFT) are used to compute the ERIs in $k$-space, while direct summation methods are used in real space. The two-step Poisson--NUFFT method is a hybrid approach that first computes an intermediate potential in $k$-space and then transforms back to real space for final integration. Two-step poisson method with spherical $k$-grid achieves the best convergence and accuracy due to its ability to handle the Coulomb singularity and exploit the isotropy of the kernel. The one-step NUFFT method with spherical $k$-grid also performs well, but is limited by the single transform approximation. Direct methods and uniform FFT are less accurate and less efficient due to their inability to adapt to the molecular geometry and handle singularities effectively. Future work could extend these methods to multi-centre integrals, explore GPU acceleration for the NUFFT, and investigate error bounds and convergence rates in more detail.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
