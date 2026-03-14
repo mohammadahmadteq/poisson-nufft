@@ -169,16 +169,9 @@ where $w_A(\mathbf{r})$ is the Becke weight function centred on atom $A$, satisf
 \end{equation}
 where $R$ is a scaling parameter (set to 1.5 bohr in our implementation). This naturally places more grid points in the chemically important region near the nuclei.
 
-In reciprocal space, we construct a spherical grid using a product of Gauss--Legendre radial quadrature on $[0, k_{\max}]$ and Lebedev angular quadrature. The volume element in spherical coordinates is $d^3k = k^2\,dk\,d\Omega$, so the quadrature weights include the Jacobian factor $k^2$:
-\begin{equation}
-    w_j = w_j^{\text{rad}}\,w_j^{\text{ang}}\,k_j^2.
-    \label{eq:sph_weights}
-\end{equation}
-A key advantage of this grid for Coulomb integrals is that the $k^2$ factor in the weights cancels analytically with the $1/k^2$ in the Coulomb kernel (\cref{eq:coulomb_ft}), eliminating the singularity at $k = 0$. Moreover, because Gauss--Legendre nodes on $(0, k_{\max}]$ never include $k = 0$ exactly, the computation is numerically stable without any special treatment.
-
 \subsection{Method Formulations}
 
-The brute-force approach discretises \cref{eq:eri} directly:
+The brute-force approach discretises \eqref{eq:eri} directly:
 \begin{equation}
     (\mu\nu|\lambda\sigma) \approx \sum_{i=1}^{N}\sum_{j \neq i}^{N} \frac{\rho_\mu\nu(\mathbf{r}_i)\,w_i\;\rho_{\lambda\sigma}(\mathbf{r}_j)\,w_j}{|\mathbf{r}_i - \mathbf{r}_j|},
     \label{eq:direct}
@@ -251,12 +244,6 @@ The benchmark molecule is H$_2$ with a bond length of 0.74~\AA{} (1.40~bohr), us
 
 The overlap density for the $(00|00)$ integral reduces to $\rho(\mathbf{r}) = |\phi_0(\mathbf{r})|^2$, where $\phi_0$ is the first basis function. This is evaluated using PySCF's \texttt{eval\_gto} function:
 
-\begin{lstlisting}[caption={Density evaluation on arbitrary grid points.},label=lst:density]
-def evaluate_density(mol, points):
-    """Evaluate |phi_0(r)|^2 at a set of real-space points."""
-    ao = mol.eval_gto("GTOval", points)
-    return ao[:, 0] * ao[:, 0]
-\end{lstlisting}
 
 \subsection{Grid Construction}
 \label{sec:grid_construction}
@@ -296,20 +283,6 @@ where $(x_i, w_i^{(\text{GL})})$ are the standard Gauss--Legendre nodes and weig
 \end{equation}
 where $\hat{\mathbf{n}}_j$ and $w_j^{(\text{ang})}$ are Lebedev unit vectors and weights.
 
-\begin{lstlisting}[caption={Spherical $k$-space grid construction.},label=lst:kgrid]
-def generate_spherical_k_grid(n_rad, ang_degree):
-    x_r, w_r_gl = scipy.special.roots_legendre(n_rad)
-    k_max = 30.0
-    k_rad = k_max * (x_r + 1.0) / 2.0
-    w_krad = w_r_gl * k_max / 2.0
-    ang_grid = AngularGrid(degree=ang_degree)
-    k_points = np.einsum('i,jk->ijk', k_rad,
-                          ang_grid.points).reshape(-1, 3)
-    k_rad_expanded = np.repeat(k_rad, len(ang_grid.weights))
-    k_weights = (np.outer(w_krad, ang_grid.weights).ravel()
-                 * k_rad_expanded ** 2)
-    return k_points, k_weights
-\end{lstlisting}
 
 \subsection{NUFFT Implementation Details}
 
@@ -320,24 +293,6 @@ All NUFFT evaluations use the type-3 transform from the FINUFFT library, which c
 \end{equation}
 where both the source points $\{\mathbf{x}_m\}$ and target points $\{\mathbf{k}_j\}$ are non-uniform. The tolerance parameter is set to $\varepsilon = 10^{-8}$ for the one-step method and $\varepsilon = 10^{-5}$ for the two-step method. The tighter tolerance in the one-step case is necessary because the entire ERI depends on a single transform, whereas the two-step method benefits from error cancellation between the forward and inverse transforms.
 
-\begin{lstlisting}[caption={One-step NUFFT ERI computation (spherical $k$-grid branch).},label=lst:nufft1step]
-def solve_nufft_1step(r_p, r_w, dens, k_pts, k_weights,
-                      is_spherical=False):
-    c = np.ascontiguousarray(dens * r_w, dtype=np.complex128)
-    F_k = finufft.nufft3d3(x, y, z, c, kx, ky, kz,
-                            isign=-1, eps=1e-8)
-    K2 = kx**2 + ky**2 + kz**2
-    if is_spherical:
-        # k^2 in weights cancels 1/k^2 Coulomb kernel
-        base_weights = k_weights / K2
-        integral = np.sum(base_weights * 4*np.pi
-                          * np.abs(F_k)**2) / (2*np.pi)**3
-    else:
-        safe_K2 = np.where(K2 < 1e-20, np.inf, K2)
-        integral = np.sum(k_weights * (4*np.pi / safe_K2)
-                          * np.abs(F_k)**2) / (2*np.pi)**3
-    return integral, len(r_p) + len(k_pts)
-\end{lstlisting}
 
 \subsection{Benchmarking Protocol}
 
@@ -354,7 +309,7 @@ Direct summation methods are capped at $N \leq 32$ to avoid excessive runtime fr
 \label{sec:results}
 %==========================================================================
 
-\Cref{fig:benchmark} presents the benchmark results across all seven methods as functions of the grid parameter $N$.
+\figref{fig:benchmark} presents the benchmark results across all seven methods as functions of the grid parameter $N$.
 
 \begin{figure}[H]
     \centering
@@ -365,7 +320,7 @@ Direct summation methods are capped at $N \leq 32$ to avoid excessive runtime fr
 
 \subsection{Accuracy Convergence}
 
-The left panel of \cref{fig:benchmark} reveals markedly different convergence behaviours:
+The left panel of \figref{fig:benchmark} reveals markedly different convergence behaviours:
 
 \paragraph{Direct methods (1--2).} The direct Cartesian method (Method 1) converges slowly, with the error plateauing near $10^{-1}$ even at $N = 32$. This is because the uniform grid poorly resolves the cusp-like density near the nuclei, and the $1/r$ singularity in the Coulomb kernel introduces discretisation artifacts. The direct Becke method (Method 2) converges significantly faster because the atom-centred grid concentrates points where the density is largest. However, both methods share $\mathcal{O}(N^2)$ complexity in the number of grid points, limiting their practical utility.
 
@@ -377,7 +332,7 @@ The left panel of \cref{fig:benchmark} reveals markedly different convergence be
 
 \subsection{Computational Cost}
 
-The centre panel of \cref{fig:benchmark} shows wall-clock times on a logarithmic scale.
+The centre panel of \figref{fig:benchmark} shows wall-clock times on a logarithmic scale.
 
 The direct methods exhibit the steepest scaling, with times reaching nearly one second at $N = 32$ due to $\mathcal{O}(N^6)$ operations for the Cartesian grid. The FFT method scales as $\mathcal{O}(N^3 \log N)$ and is the fastest at small $N$, benefiting from highly optimised FFTW-based implementations. However, it requires $N^3$ grid points, so the absolute cost grows rapidly.
 
@@ -401,7 +356,7 @@ First, the two-step formulation separates the forward transform, kernel applicat
 
 Second, the spherical $k$-grid exploits the isotropy of the Coulomb kernel. The $4\pi/k^2$ factor depends only on $|\mathbf{k}|$, so a grid with Gauss--Legendre points in the radial direction achieves exponential convergence for smooth radial integrands. In contrast, a Cartesian $k$-grid wastes points in the corners of the cube where $|\mathbf{k}|$ is large, and the integrand is negligible.
 
-Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\cref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned.
+Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned.
 
 \subsection{Limitations of the Direct and FFT Methods}
 
