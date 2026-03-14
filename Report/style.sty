@@ -1,0 +1,151 @@
+%--- Style file for thesis
+
+%--- packages for English and German texts and easier input
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{marvosym}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings} % For code snippets
+\usepackage{xcolor}   % For code coloring
+
+
+\DeclareUnicodeCharacter{20AC}{\EUR}
+
+%--- Um in Absätzen statt Einrücken, Zeilenabstand einzuführen
+\usepackage{parskip}
+
+%--- math packages
+\usepackage{mathrsfs,amssymb}
+\usepackage[intlimits]{empheq}
+\mathchardef\Rightarrow="3229
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+
+
+%--- Literature References
+\usepackage{csquotes}
+\usepackage[backend=biber, style=numeric, sorting=none, backend=biber]{biblatex}
+
+\AtEveryBibitem{\clearfield{month}}
+
+\DeclareDelimFormat[bib,biblist]{nametitledelim}{\addcolon\space}
+
+\DeclareFieldFormat
+  [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{#1\isdot}
+
+\DeclareFieldFormat{date}{\mkbibparens{#1}}
+\DeclareFieldFormat[article,periodical]{date}{#1}
+
+% Add bib-file with literature
+\addbibresource{References/refs.bib}
+
+
+
+
+%---- Define Styles for Theroems, Lemmata etc.
+
+\usepackage{amsthm}
+
+\newtheoremstyle{fett}% name
+  {12pt}%      Space above, empty = `usual value'
+  {9pt}%      Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\newtheoremstyle{dünn}% name
+  {12pt}%      Space above, empty = `usual value'
+  {9pt}%      Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {}% Thm head font
+  {}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\theoremstyle{fett}
+\newtheorem{Definition}{Definition}[section]
+\newtheorem{Theorem}[Definition]{Theorem}
+\newtheorem{Lemma}[Definition]{Lemma}
+\newtheorem{Algorithm}[Definition]{Algorithm}
+\newtheorem{Example}[Definition]{Example}
+\newtheorem{Remark}[Definition]{Remark}
+
+
+%--- Anpassung der Nummerierungen
+\usepackage{enumerate}
+
+
+%--- Packages for images
+\usepackage{tikz}
+\usetikzlibrary{snakes}
+
+
+%--- packages for plotting
+\usepackage{pgfplots}
+\usepackage{filecontents}
+\pgfplotsset{compat=1.5}
+
+
+%--- Packages for creation of plots
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[section]{placeins}%Bilder innerhalb section
+
+
+%--- self defined page layouts
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\thepage}
+\fancyhead[RO,LE]{\nouppercase{\rightmark}}
+
+
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\thepage}
+\fancyhead[RO,LE]{\nouppercase{\leftmark}}
+}
+
+\fancypagestyle{Introduction}{
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\thepage}
+\fancyhead[RO,LE]{\nouppercase{\text{Introduction}}}
+}
+
+\fancypagestyle{Summary}{
+\fancyhf{}
+\fancyhead[LO,RE]{\sffamily\bfseries\thepage}
+\fancyhead[RO,LE]{\nouppercase{\text{Summary}}}
+}
+
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[numbers]{natbib}
+\usepackage{setspace}
+\usepackage{fancyhdr}

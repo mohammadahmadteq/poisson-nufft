@@ -1,0 +1,39 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Basis Set Expansion and Molecular Integrals}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Fourier-Space Formulation of the Coulomb Interaction}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}The Poisson Equation Connection}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Non-Uniform Fast Fourier Transform (NUFFT)}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Objectives}{5}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Theoretical Background}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Numerical Quadrature on Molecular Grids}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Uniform Cartesian Grids}{5}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Becke Molecular Grids}{5}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Spherical $k$-Space Grids}{6}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Method Formulations}{6}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Method 1--2: Direct Real-Space Summation}{6}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Method 3: Uniform FFT Poisson Solver}{6}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Methods 4--5: One-Step NUFFT}{7}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Methods 6--7: Two-Step Poisson--NUFFT}{7}{subsubsection.2.2.4}%
+\contentsline {section}{\numberline {3}Computational Methodology}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Software Environment}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Test System}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Density Evaluation}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Grid Construction}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}NUFFT Implementation Details}{9}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Benchmarking Protocol}{10}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Results}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Accuracy Convergence}{11}{subsection.4.1}%
+\contentsline {paragraph}{Direct methods (1--2).}{11}{section*.4}%
+\contentsline {paragraph}{Uniform FFT (3).}{12}{section*.5}%
+\contentsline {paragraph}{NUFFT one-step methods (4--5).}{12}{section*.6}%
+\contentsline {paragraph}{Poisson two-step methods (6--7).}{12}{section*.7}%
+\contentsline {subsection}{\numberline {4.2}Computational Cost}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Memory Usage}{13}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Discussion}{13}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Why the Poisson Two-Step Method Excels}{13}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Limitations of the Direct and FFT Methods}{13}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Cartesian versus Spherical $k$-Space Grids}{14}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Numerical Stability Considerations}{14}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusion}{14}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Future Work}{15}{subsection.6.1}%
