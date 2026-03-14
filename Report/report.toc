@@ -1,21 +1,21 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
-\contentsline {section}{\numberline {2}Theoretical Background}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Method Formulations}{6}{subsection.2.1}%
-\contentsline {section}{\numberline {3}Computational Methodology}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Software Environment}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Test System}{7}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Density Evaluation}{7}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Grid Construction}{7}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}NUFFT Implementation Details}{8}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Benchmarking Protocol}{8}{subsection.3.6}%
-\contentsline {section}{\numberline {4}Results}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Accuracy Convergence}{9}{subsection.4.1}%
-\contentsline {paragraph}{Direct methods (1--2).}{9}{section*.4}%
-\contentsline {paragraph}{Uniform FFT (3).}{9}{section*.5}%
-\contentsline {paragraph}{NUFFT one-step methods (4--5).}{9}{section*.6}%
-\contentsline {paragraph}{Poisson two-step methods (6--7).}{10}{section*.7}%
-\contentsline {subsection}{\numberline {4.2}Computational Cost}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Memory Usage}{10}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Discussion}{10}{section.5}%
-\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}%
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {section}{\numberline {2}Theoretical Background}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Method Formulations}{7}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Computational Methodology}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Software Environment}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Test System}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Density Evaluation}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Grid Construction}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}NUFFT Implementation Details}{9}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Benchmarking Protocol}{9}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Results}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Accuracy Convergence}{10}{subsection.4.1}%
+\contentsline {paragraph}{Direct methods (1--2).}{10}{section*.4}%
+\contentsline {paragraph}{Uniform FFT (3).}{10}{section*.5}%
+\contentsline {paragraph}{NUFFT one-step methods (4--5).}{10}{section*.6}%
+\contentsline {paragraph}{Poisson two-step methods (6--7).}{11}{section*.7}%
+\contentsline {subsection}{\numberline {4.2}Computational Cost}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Memory Usage}{11}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Discussion}{11}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{12}{section.6}%
