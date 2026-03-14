@@ -313,7 +313,7 @@ Direct summation methods are capped at $N \leq 32$ to avoid excessive runtime fr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{eri_benchmark.png}
+    \includegraphics[width=1]{eri_benchmark.png}
     \caption{Benchmark results for seven ERI computation methods. \textbf{Left:} Absolute error versus grid parameter $N$ (log scale). \textbf{Centre:} Wall-clock computation time (log scale). \textbf{Right:} Peak memory usage (log scale). Methods: (1)~Direct Cartesian, (2)~Direct Becke, (3)~FFT Uniform, (4)~NUFFT 1-step Cartesian $k$, (5)~NUFFT 1-step Spherical $k$, (6)~Poisson 2-step Cartesian $k$, (7)~Poisson 2-step Spherical $k$.}
     \label{fig:benchmark}
 \end{figure}
@@ -347,30 +347,21 @@ The right panel shows peak memory consumption. Direct methods are memory-intensi
 \section{Discussion}
 \label{sec:discussion}
 %==========================================================================
-
-\subsection{Why the Poisson Two-Step Method Excels}
-
-The superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) can be understood from several mathematical perspectives.
+As observed in the figures, The superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) and Method 5 (one-step Nufft with spherical $k$-grid) can be understood from several mathematical perspectives. However, before we discuss there superiority, it is important to understand the limitations of the other methods. we have to address the fact that both of them have overlapping convergence rates. This is because mathematically, the two-step poisson method eventually takes the same form as the one-step method, but with an additional forward and inverse transform. Hence, the convergence rates are expected to be similar, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation, as explained below.
 
 First, the two-step formulation separates the forward transform, kernel application, and inverse transform into distinct stages. This means the NUFFT approximation error enters twice but affects different quantities: the forward transform approximates $\widetilde{G}(\mathbf{k})$ and the inverse transform reconstructs $V^{(g)}(\mathbf{r})$. Because $V^{(g)}(\mathbf{r})$ is a smooth Coulomb potential (no cusps or singularities away from the nuclei), the inverse NUFFT achieves high accuracy, and the final real-space integration on the Becke grid is exact to high order.
 
 Second, the spherical $k$-grid exploits the isotropy of the Coulomb kernel. The $4\pi/k^2$ factor depends only on $|\mathbf{k}|$, so a grid with Gauss--Legendre points in the radial direction achieves exponential convergence for smooth radial integrands. In contrast, a Cartesian $k$-grid wastes points in the corners of the cube where $|\mathbf{k}|$ is large, and the integrand is negligible.
 
-Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned.
+Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned unlike the direct methods.
 
-\subsection{Limitations of the Direct and FFT Methods}
-
-The direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the distance matrix diagonal to infinity) is a necessary but imperfect remedy.
+Hence, the direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the distance matrix diagonal to infinity) is a necessary but imperfect remedy.
 
 The uniform FFT method is limited by its inability to adapt to the molecular geometry. All points of the density profile, including the near-nuclear cusps, must be resolved by the same uniform spacing. This results in either insufficient resolution (if $N$ is small) or excessive memory and compute (if $N$ is large enough to resolve the cusps).
-
-\subsection{Cartesian versus Spherical $k$-Space Grids}
 
 A consistent finding across both the one-step and two-step methods is the superiority of spherical $k$-grids. This can be quantified by comparing the number of grid points required: a Cartesian $k$-grid with $N_k$ points per dimension uses $N_k^3$ total points, whereas the spherical grid uses approximately $N_{\text{rad}} \times N_{\text{ang}}$ points, where $N_{\text{ang}}$ is typically a few hundred (from the Lebedev grid). For the same accuracy, the spherical grid requires one to two orders of magnitude fewer points.
 
 Furthermore, the Cartesian $k$-grid introduces a regularisation problem at $\mathbf{k} = \mathbf{0}$ (the Coulomb singularity), which is handled by setting $K^2 = \infty$ for small values. This ad hoc treatment introduces a systematic bias, whereas the spherical grid avoids the issue entirely.
-
-\subsection{Numerical Stability Considerations}
 
 The NUFFT tolerance parameter $\varepsilon$ plays a critical role. In the one-step method, the entire ERI depends on a single forward NUFFT, so a tight tolerance ($\varepsilon = 10^{-8}$) is required. In the two-step method, the tolerance can be relaxed to $\varepsilon = 10^{-5}$ because errors in the forward and inverse transforms partially cancel when computing the inner product. This tolerance asymmetry is both a practical advantage (faster NUFFT execution) and a theoretical expectation from the variational nature of the energy functional.
 
