@@ -14,7 +14,7 @@
 \contentsline {paragraph}{Direct methods (1--2).}{9}{section*.4}%
 \contentsline {paragraph}{Uniform FFT (3).}{9}{section*.5}%
 \contentsline {paragraph}{NUFFT one-step methods (4--5).}{9}{section*.6}%
-\contentsline {paragraph}{Poisson two-step methods (6--7).}{9}{section*.7}%
+\contentsline {paragraph}{Poisson two-step methods (6--7).}{10}{section*.7}%
 \contentsline {subsection}{\numberline {4.2}Computational Cost}{10}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Memory Usage}{10}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Discussion}{10}{section.5}%

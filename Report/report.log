@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  14 MAR 2026 16:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1524,23 +1524,11 @@ l.312 \figref
              {fig:benchmark} presents the benchmark results across all seven...
 
 ? 
-<eri_benchmark.png, id=186, 1849.6302pt x 552.6246pt>
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   !
-l.316 ...cludegraphics[width=1]{eri_benchmark.png}
-                                                  
-? 
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   !
-l.316 ...cludegraphics[width=1]{eri_benchmark.png}
-                                                  
-? 
+<eri_benchmark.png, id=166, 1849.6302pt x 552.6246pt>
 File: eri_benchmark.png Graphic file (type png)
 <use eri_benchmark.png>
 Package pdftex.def Info: eri_benchmark.png  used on input line 316.
-(pdftex.def)             Requested size: 1.0pt x 0.29512pt.
+(pdftex.def)             Requested size: 469.47049pt x 140.2639pt.
 ! Undefined control sequence.
 l.323 The left panel of \figref
                                {fig:benchmark} reveals markedly different co...
@@ -1625,68 +1613,46 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: C45F24BED61F6A11DAC05EF0C6E598EC;3272
-(rerunfilecheck)             After:  050B31E3CAC6D73E74CFD27495729E83;2224.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 050B31E3CAC6D73E74CFD27495729E83;2224.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 46714 strings out of 469515
- 1021896 string characters out of 5470808
+ 46706 strings out of 469515
+ 1021776 string characters out of 5470808
  1953360 words of memory out of 5000000
- 74649 multiletter control sequences out of 15000+600000
+ 74645 multiletter control sequences out of 15000+600000
  649583 words of font info for 101 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,108p,1209b,1847s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{subsection.5.4} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
-r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
-r/sfbx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb>
-</usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/tex
-mf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
-super/sfrm0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.
-pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share
-/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fon
-ts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public
-/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1
-200.pfb>
-Output written on report.pdf (12 pages, 752144 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
+per/sfbx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pf
+b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts
+/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/c
+m-super/sfrm0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm100
+0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/f
+onts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sft
+t1200.pfb>
+Output written on report.pdf (12 pages, 751186 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 269 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 178 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 321 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
