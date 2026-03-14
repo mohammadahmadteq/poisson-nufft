@@ -86,7 +86,7 @@ where the three terms represent the kinetic energy, nuclear--electron attraction
 
 To discretise the problem, the molecular orbitals are expanded in a basis of $K$ atom-centred functions $\{\chi_\mu\}$:
 \begin{equation}
-    \phi_i(\mathbf{r}) = \sum_{\mu=1}^{K} C_{\mu i}\,\chi_\mu(\mathbf{r}).
+    \phi_i(\mathbf{r}) = \sum_{\mu=1}^{K} C_\mu\,\chi_\mu(\mathbf{r}).
     \label{eq:lcao}
 \end{equation}
 Gaussian-Type Orbitals (GTOs) are the standard choice because the product of two Gaussians centred at different points yields another Gaussian (the Gaussian Product Theorem), which simplifies integral evaluation:
@@ -95,19 +95,18 @@ Gaussian-Type Orbitals (GTOs) are the standard choice because the product of two
     \label{eq:gto}
 \end{equation}
 
-Substituting \cref{eq:lcao} into the energy expression produces four classes of molecular integrals. The overlap integrals $S_{\mu\nu}$, kinetic energy integrals $T_{\mu\nu}$, nuclear attraction integrals $V_{\mu\nu}$, and the four-centre electron repulsion integrals (ERIs):
+Substituting \eqref{eq:lcao} into the energy expression produces four classes of molecular integrals. The overlap integrals $S_{\mu\nu}$, kinetic energy integrals $T_{\mu\nu}$, nuclear attraction integrals $V_{\mu\nu}$, and the four-centre electron repulsion integrals (ERIs):
 \begin{equation}
     (\mu\nu|\lambda\sigma) = \iint \frac{\chi_\mu(\mathbf{r}_1)\chi_\nu(\mathbf{r}_1)\;\chi_\lambda(\mathbf{r}_2)\chi_\sigma(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_1\,d^3r_2.
     \label{eq:eri}
 \end{equation}
-For a basis of size $K$, the number of unique ERIs scales as $\mathcal{O}(K^4)$, making their evaluation the dominant computational bottleneck.
+For a basis of size $K$, the number of unique ERIs scales as $\mathcal{O}(K^4)$, making their evaluation the dominant computational bottleneck. A key insight is that the Coulomb kernel has a simple form in Fourier (reciprocal) space. The Fourier transform of $1/|\mathbf{r}|$ in three dimensions is:
 
-A key insight is that the Coulomb kernel has a simple form in Fourier (reciprocal) space. The Fourier transform of $1/|\mathbf{r}|$ in three dimensions is:
 \begin{equation}
     \mathcal{F}\!\left[\frac{1}{|\mathbf{r}|}\right](\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}.
     \label{eq:coulomb_ft}
 \end{equation}
-This transforms the six-dimensional integral in \cref{eq:eri} into a product of three-dimensional Fourier transforms, reducing it by the convolution theorem to:
+This transforms the six-dimensional integral in \eqref{eq:eri} into a product of three-dimensional Fourier transforms, reducing it by the convolution theorem to:
 \begin{equation}
     (\mu\nu|\lambda\sigma) = \frac{1}{(2\pi)^3}\int \frac{4\pi}{|\mathbf{k}|^2}\;\widetilde{f}(\mathbf{k})\;\widetilde{g}^*(\mathbf{k})\,d^3k,
     \label{eq:eri_kspace}
@@ -124,7 +123,7 @@ with the solution:
     V(\mathbf{r}_1) = \int \frac{\rho(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_2.
     \label{eq:poisson_sol}
 \end{equation}
-Fourier-transforming \cref{eq:poisson} converts the differential equation into the algebraic relation:
+Fourier-transforming \eqref{eq:poisson} converts the differential equation into the algebraic relation:
 \begin{equation}
     \widetilde{V}(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}\,\widetilde{\rho}(\mathbf{k}),
     \label{eq:poisson_kspace}
@@ -138,16 +137,8 @@ The standard FFT operates on uniformly spaced grids and achieves $\mathcal{O}(N\
 \end{equation}
 where $\{\mathbf{x}_m\}$ are non-uniform source points and $\{\mathbf{k}_j\}$ are non-uniform target points (this is the type-3 NUFFT). The algorithm achieves $\mathcal{O}(M\log M + N\log N)$ complexity via interpolation onto an auxiliary uniform grid, FFT, and deconvolution \cite{barnett2019}.
 
-\subsection{Objectives}
-
-The aim of this study is to benchmark seven numerical approaches for computing ERIs, categorised as follows:
-\begin{enumerate}
-    \item \textbf{Direct summation} on Cartesian and Becke grids in real space,
-    \item \textbf{Uniform FFT} Poisson solver on a Cartesian grid,
-    \item \textbf{One-step NUFFT} with Cartesian and spherical $k$-space grids,
-    \item \textbf{Two-step Poisson--NUFFT} with Cartesian and spherical $k$-space grids.
-\end{enumerate}
-We evaluate convergence behaviour, computational cost, and memory usage, and discuss why certain methods outperform others from a mathematical perspective.
+The goal of this study is to benchmark several numerical approaches for computing ERIs, listed here: on Cartesian and Becke grids in real space, Poisson solver on a Cartesian grid, with Cartesian and spherical $k$-space grids, finally with Cartesian and spherical $k$-space grids.
+We evaluate convergence behaviour, computational cost, and memory usage, and then will analyze based on the results the mathematical reasons behind the observed performance differences.
 
 
 %==========================================================================
