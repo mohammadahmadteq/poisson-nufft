@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1433,7 +1433,7 @@ l.281 \figref
              {fig:benchmark} presents the benchmark results across all seven...
 
 ? 
-<eri_benchmark.png, id=183, 1849.6302pt x 552.6246pt>
+<eri_benchmark.png, id=184, 1849.6302pt x 552.6246pt>
 File: eri_benchmark.png Graphic file (type png)
 <use eri_benchmark.png>
 Package pdftex.def Info: eri_benchmark.png  used on input line 285.
@@ -1465,8 +1465,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [10]
 
-LaTeX Warning: Reference `eq:sph_weights,eq:coulomb_ft' on page 11 undefined on
- input line 325.
+LaTeX Warning: Reference `eq:sph_weights' on page 11 undefined on input line 32
+5.
 
 
 Overfull \hbox (0.35399pt too wide) in paragraph at lines 333--334
@@ -1517,6 +1517,9 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 15A27ACE373C23808925D1BF12BF813C;2319.
 Package logreq Info: Writing requests to 'report.run.xml'.
@@ -1524,10 +1527,10 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45003 strings out of 469515
+ 45005 strings out of 469515
  985597 string characters out of 5470808
- 1919384 words of memory out of 5000000
- 72937 multiletter control sequences out of 15000+600000
+ 1919386 words of memory out of 5000000
+ 72938 multiletter control sequences out of 15000+600000
  652483 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,108p,1579b,1847s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1555,10 +1558,10 @@ ic/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfs
 x1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr
 /share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-di
 st/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 816304 bytes).
+Output written on report.pdf (13 pages, 816015 bytes).
 PDF statistics:
- 377 PDF objects out of 1000 (max. 8388607)
- 298 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 500000)
+ 379 PDF objects out of 1000 (max. 8388607)
+ 300 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
  154 words of extra memory for PDF output out of 10000 (max. 10000000)
 
