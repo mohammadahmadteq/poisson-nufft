@@ -297,7 +297,7 @@ The left panel of \figref{fig:benchmark} reveals markedly different convergence 
 
 \paragraph{NUFFT one-step methods (4--5).} Both Cartesian and spherical $k$-grid variants benefit from the Becke grid in real space, giving them better resolution near the nuclei. The spherical $k$-grid variant (Method 5, dashed green) converges more smoothly than the Cartesian $k$-grid variant (Method 4) because the spherical quadrature is naturally suited to the isotropic Coulomb kernel, and the $k^2$ cancellation avoids singularity issues. At $N = 64$, Method 5 reaches errors near $10^{-2}$.
 
-\paragraph{Poisson two-step methods (6--7).} The two-step Poisson solver with spherical $k$-grid (Method 7, dashed red) achieves the best convergence of all methods, reaching errors below $10^{-3}$ at moderate grid sizes and continuing to improve. This superiority arises because the two-step approach constructs a smooth real-space potential $V^{(g)}(\mathbf{r})$ before performing the final integration, which is more amenable to accurate numerical quadrature than the oscillatory $k$-space integrand in the one-step approach. The Cartesian $k$-grid variant (Method 6) also converges well but is hampered by the singularity at $\mathbf{k} = \mathbf{0}$.
+\paragraph{Poisson two-step methods (6--7).} The two-step Poisson solver with spherical $k$-grid (Method 7, dashed red) has an overlap with the graph of the one-step NUFFT spherical $k$-grid (Method 5). This is expected since both methods ultimately compute the same integral, but the two-step method benefits from error cancellation between the forward and inverse transforms.
 
 \subsection{Computational Cost}
 
@@ -322,7 +322,7 @@ First, the two-step formulation separates the forward transform, kernel applicat
 
 Second, the spherical $k$-grid exploits the isotropy of the Coulomb kernel. The $4\pi/k^2$ factor depends only on $|\mathbf{k}|$, so a grid with Gauss--Legendre points in the radial direction achieves exponential convergence for smooth radial integrands. In contrast, a Cartesian $k$-grid wastes points in the corners of the cube where $|\mathbf{k}|$ is large, and the integrand is negligible.
 
-Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned, unlike the direct methods.
+Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel \eqref{eq:sph_weights} and \eqref{eq:coulomb_ft} means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned, unlike the direct methods.
 
 Hence, the direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the diagonal of the distance matrix to infinity) is a necessary but imperfect remedy.
 
