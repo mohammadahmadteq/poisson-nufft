@@ -21,12 +21,12 @@
 
 \begin{document}
 
-begin{titlepage}
+\begin{titlepage}
 
 \begin{flushright}
 
 \includegraphics[width=3cm]{LogoUniBayreuth.jpg}
-\par\vspace{2cm}
+\par\vspaxce{2cm}
 
 \end{flushright}
 
@@ -350,7 +350,7 @@ First, the two-step formulation separates the forward transform, kernel applicat
 
 Second, the spherical $k$-grid exploits the isotropy of the Coulomb kernel. The $4\pi/k^2$ factor depends only on $|\mathbf{k}|$, so a grid with Gauss--Legendre points in the radial direction achieves exponential convergence for smooth radial integrands. In contrast, a Cartesian $k$-grid wastes points in the corners of the cube where $|\mathbf{k}|$ is large, and the integrand is negligible.
 
-Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel \eqref{eq:sph_weights} and \eqref{eq:coulomb_ft} means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned, unlike the direct methods.
+Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel \eqref{eq:coulomb_ft} means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned, unlike the direct methods.
 
 Hence, the direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the diagonal of the distance matrix to infinity) is a necessary but imperfect remedy.
 
