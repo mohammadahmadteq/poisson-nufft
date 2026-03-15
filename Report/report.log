@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1310,35 +1310,17 @@ File: LogoUniBayreuth.jpg Graphic file (type jpg)
 Package pdftex.def Info: LogoUniBayreuth.jpg  used on input line 28.
 (pdftex.def)             Requested size: 85.35826pt x 26.37924pt.
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
-ts/enc/dvips/cm-super/cm-super-t1.enc}
-
- <./LogoUniBayreuth.jpg>]
-
-! LaTeX Error: \begin{document} ended by \end{titlepage}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.51 \end{titlepage}
-                    
+! Undefined control sequence.
+l.29 \par\vspaxce
+                 {2cm}
 ? 
-! Extra \endgroup.
-\end  ...end#1\endcsname \@checkend {#1}\endgroup 
-                                                  \UseHook {env/#1/after}\if...
-l.51 \end{titlepage}
-                    
-? 
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
+/enc/dvips/cm-super/cm-super-t1.enc} <./LogoUniBayreuth.jpg>]
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 57
 .
+
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -1479,11 +1461,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [9]
-
-LaTeX Warning: Reference `eq:sph_weights' on page 10 undefined on input line 35
-3.
-
-
 Overfull \hbox (0.35399pt too wide) in paragraph at lines 361--362
 []\T1/cmr/m/n/12 Furthermore, the Carte-sian $\OML/cmm/m/it/12 k$\T1/cmr/m/n/12
  -grid in-tro-duces a reg-u-lar-i-sa-tion prob-lem at $\OT1/cmr/bx/n/12 k \OT1/
@@ -1528,10 +1505,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 15A27ACE373C23808925D1BF12BF813C;2319.
 Package logreq Info: Writing requests to 'report.run.xml'.
@@ -1539,10 +1512,10 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44998 strings out of 469515
- 985669 string characters out of 5470808
- 1919135 words of memory out of 5000000
- 72933 multiletter control sequences out of 15000+600000
+ 44996 strings out of 469515
+ 985634 string characters out of 5470808
+ 1919133 words of memory out of 5000000
+ 72931 multiletter control sequences out of 15000+600000
  649384 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,108p,1579b,1847s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1570,7 +1543,7 @@ ic/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfs
 x1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr
 /share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-di
 st/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 1162107 bytes).
+Output written on report.pdf (13 pages, 1161871 bytes).
 PDF statistics:
  379 PDF objects out of 1000 (max. 8388607)
  299 compressed objects within 3 object streams
