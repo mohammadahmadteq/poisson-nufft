@@ -14,8 +14,8 @@
     \textbf{Quantum Chemistry Project Report: Benchmarking Numerical Methods for Electron Repulsion Integrals}
 }
 \author{
-    Mohammad Ahmad: 2074000
-    Supervisor: Dr Johannes Margraf
+ Mohammad Ahmad: 2074000
+ Supervisor: Dr. Johannes Margraf
 }
 \date{\today}
 
@@ -25,7 +25,9 @@
 
 \newpage
 \begin{abstract}
-Electron repulsion integrals (ERIs) constitute the primary computational bottleneck in quantum chemistry simulations, scaling as $\mathcal{O}(N^4)$ in conventional analytical approaches. This report presents a systematic benchmark of seven numerical methods for computing ERIs, ranging from brute-force direct summation in real space through uniform Fast Fourier Transforms (FFT) to Non-Uniform Fast Fourier Transform (NUFFT) techniques and a two-step Poisson--NUFFT solver. We evaluate each method on the hydrogen molecule H$_2$ using the \texttt{def2-svp} basis set, measuring absolute error against the analytical PySCF reference, wall-clock time, and peak memory consumption as the grid resolution parameter $N$ increases. Our results demonstrate that the Poisson two-step method with a spherical $k$-space grid achieves the fastest convergence, reaching errors below $10^{-3}$ at moderate grid sizes, while maintaining competitive computational cost. We discuss the mathematical foundations of each approach, analyse convergence behaviour, and suggest directions for future work including extension to multi-centre integrals and GPU acceleration.
+
+Electron repulsion integrals (ERIs) are the primary computational bottleneck in quantum chemistry simulations, scaling up to $\mathcal{O}(N^4)$ in conventional analytical approaches. Hence, it makes it difficult to run simulations that aid in the development of novel materials and chemicals for various applications. This report presents a systematic benchmark of seven numerical methods for computing ERIs, ranging from brute-force direct summation in real space to uniform Fast Fourier Transforms (FFT), Non-Uniform Fast Fourier Transform (NUFFT), and a two-step Poisson-NUFFT solver. Each method on the hydrogen molecule H$_2$ is evaluated using the \texttt{def2-svp} basis set, measuring absolute error against the analytical PySCF reference, wall-clock time, and peak memory consumption as the grid resolution $N$ is raised. Our results demonstrate that NUFFT methods with a spherical $k$-space grid achieve the fastest convergence, reaching errors below $10^{-3}$ at moderate grid sizes, while maintaining competitive computational cost. Despite both two-step Poisson and one-step NUFFT showing similar convergence, the Poisson equation is generally more stable, but also at a slight cost of an increase in time complexity.
+
 \end{abstract}
 
 \newpage
@@ -37,21 +39,21 @@ Electron repulsion integrals (ERIs) constitute the primary computational bottlen
 \label{sec:intro}
 %==========================================================================
 
-Many advances in materials science, battery technology, semiconductor design, and superconductivity owe their progress to quantum chemistry simulations. At their core, these simulations seek approximate solutions to the many-body Schr\"{o}dinger equation:
+Many advances in materials science, battery technology, semiconductor design, and superconductivity owe their progress to quantum chemistry simulations. Fundamentally, these simulations approximate solutions to the many-body Schr\"{o}dinger equation:
 \begin{equation}
-    \hat{H}\,\Psi(\mathbf{r}_1, \ldots, \mathbf{r}_n) = E\,\Psi(\mathbf{r}_1, \ldots, \mathbf{r}_n),
+ \hat{H}\,\Psi(\mathbf{r}_1, \ldots, \mathbf{r}_n) = E\,\Psi(\mathbf{r}_1, \ldots, \mathbf{r}_n),
     \label{eq:schrodinger}
 \end{equation}
 where $\hat{H}$ is the molecular Hamiltonian and $\Psi$ is the many-electron wavefunction. Under the Born--Oppenheimer approximation, the nuclei are treated as stationary point charges and the electronic Hamiltonian becomes:
 \begin{equation}
-    \hat{H}_{\text{elec}} = -\frac{1}{2}\sum_i \nabla_i^2
-    - \sum_{i,A}\frac{Z_A}{|\mathbf{r}_i - \mathbf{R}_A|}
-    + \sum_{i<j}\frac{1}{|\mathbf{r}_i - \mathbf{r}_j|},
+ \hat{H}_{\text{elec}} = -\frac{1}{2}\sum_i \nabla_i^2
+ - \sum_{i,A}\frac{Z_A}{|\mathbf{r}_i - \mathbf{R}_A|}
+ + \sum_{i<j}\frac{1}{|\mathbf{r}_i - \mathbf{r}_j|},
     \label{eq:helec}
 \end{equation}
-where the three terms represent the kinetic energy, nuclear--electron attraction, and electron--electron repulsion respectively. The final term is the most computationally demanding.
+where the three terms represent the kinetic energy, nuclear-electron attraction, and electron-electron repulsion, respectively. The final term is the most computationally demanding.
 
-To discretise the problem, the molecular orbitals are expanded in a basis of $K$ atom-centred functions $\{\chi_\mu\}$:
+To discretise the problem, the molecular orbitals expand in a basis of $K$ atom-centred functions $\{\chi_\mu\}$:
 \begin{equation}
     \phi_i(\mathbf{r}) = \sum_{\mu=1}^{K} C_\mu\,\chi_\mu(\mathbf{r}).
     \label{eq:lcao}
@@ -64,18 +66,18 @@ Gaussian-Type Orbitals (GTOs) are the standard choice because the product of two
 
 Substituting \eqref{eq:lcao} into the energy expression produces four classes of molecular integrals. The overlap integrals $S_{\mu\nu}$, kinetic energy integrals $T_{\mu\nu}$, nuclear attraction integrals $V_{\mu\nu}$, and the four-centre electron repulsion integrals (ERIs):
 \begin{equation}
-    (\mu\nu|\lambda\sigma) = \iint \frac{\chi_\mu(\mathbf{r}_1)\chi_\nu(\mathbf{r}_1)\;\chi_\lambda(\mathbf{r}_2)\chi_\sigma(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_1\,d^3r_2.
+ (\mu\nu|\lambda\sigma) = \iint \frac{\chi_\mu(\mathbf{r}_1)\chi_\nu(\mathbf{r}_1)\;\chi_\lambda(\mathbf{r}_2)\chi_\sigma(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_1\,d^3r_2.
     \label{eq:eri}
 \end{equation}
 For a basis of size $K$, the number of unique ERIs scales as $\mathcal{O}(K^4)$, making their evaluation the dominant computational bottleneck. A key insight is that the Coulomb kernel has a simple form in Fourier (reciprocal) space. The Fourier transform of $1/|\mathbf{r}|$ in three dimensions is:
 
 \begin{equation}
-    \mathcal{F}\!\left[\frac{1}{|\mathbf{r}|}\right](\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}.
+ \mathcal{F}\!\left[\frac{1}{|\mathbf{r}|}\right](\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}.
     \label{eq:coulomb_ft}
 \end{equation}
-This transforms the six-dimensional integral in \eqref{eq:eri} into a product of three-dimensional Fourier transforms, reducing it by the convolution theorem to:
+This equation transforms the six-dimensional integral in \eqref{eq:eri} into a product of three-dimensional Fourier transforms, reducing it by the convolution theorem to:
 \begin{equation}
-    (\mu\nu|\lambda\sigma) = \frac{1}{(2\pi)^3}\int \frac{4\pi}{|\mathbf{k}|^2}\;\widetilde{f}(\mathbf{k})\;\widetilde{g}^*(\mathbf{k})\,d^3k,
+ (\mu\nu|\lambda\sigma) = \frac{1}{(2\pi)^3}\int \frac{4\pi}{|\mathbf{k}|^2}\;\widetilde{f}(\mathbf{k})\;\widetilde{g}^*(\mathbf{k})\,d^3k,
     \label{eq:eri_kspace}
 \end{equation}
 where $\widetilde{f}(\mathbf{k})$ and $\widetilde{g}(\mathbf{k})$ are the Fourier transforms of the overlap densities $f(\mathbf{r}) = \chi_\mu(\mathbf{r})\chi_\nu(\mathbf{r})$ and $g(\mathbf{r}) = \chi_\lambda(\mathbf{r})\chi_\sigma(\mathbf{r})$.
@@ -87,25 +89,25 @@ The Coulomb potential generated by a charge distribution $\rho(\mathbf{r})$ sati
 \end{equation}
 with the solution:
 \begin{equation}
-    V(\mathbf{r}_1) = \int \frac{\rho(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_2.
+ V(\mathbf{r}_1) = \int \frac{\rho(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|}\,d^3r_2.
     \label{eq:poisson_sol}
 \end{equation}
 Fourier-transforming \eqref{eq:poisson} converts the differential equation into the algebraic relation:
 \begin{equation}
-    \widetilde{V}(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}\,\widetilde{\rho}(\mathbf{k}),
+ \widetilde{V}(\mathbf{k}) = \frac{4\pi}{|\mathbf{k}|^2}\,\widetilde{\rho}(\mathbf{k}),
     \label{eq:poisson_kspace}
 \end{equation}
-which replaces a costly real-space integration with a pointwise multiplication in $k$-space. This is the foundation of the two-step Poisson--NUFFT solver benchmarked in this study.
+which replaces a costly real-space integration with a pointwise multiplication in $k$-space, is the foundation of the two-step Poisson--NUFFT solver benchmarked in this study.
 
 The standard FFT operates on uniformly spaced grids and achieves $\mathcal{O}(N\log N)$ complexity \cite{app151910563}. However, molecular systems are better described by non-uniform grids that concentrate points near the nuclei. The Non-Uniform Fast Fourier Transform (NUFFT) generalises the FFT to handle arbitrary point distributions. It computes sums of the form:
 \begin{equation}
-    F(\mathbf{k}_j) = \sum_{m=1}^{M} c_m\,e^{-i\,\mathbf{k}_j \cdot \mathbf{x}_m},
+ F(\mathbf{k}_j) = \sum_{m=1}^{M} c_m\,e^{-i\,\mathbf{k}_j \cdot \mathbf{x}_m},
     \label{eq:nufft}
 \end{equation}
 where $\{\mathbf{x}_m\}$ are non-uniform source points and $\{\mathbf{k}_j\}$ are non-uniform target points (this is the type-3 NUFFT). The algorithm achieves $\mathcal{O}(M\log M + N\log N)$ complexity via interpolation onto an auxiliary uniform grid, FFT, and deconvolution \cite{barnett2019}.
 
-The goal of this study is to benchmark several numerical approaches for computing ERIs, listed here: on Cartesian and Becke grids in real space, Poisson solver on a Cartesian grid, with Cartesian and spherical $k$-space grids, finally with Cartesian and spherical $k$-space grids.
-We evaluate convergence behaviour, computational cost, and memory usage, and then will analyze based on the results the mathematical reasons behind the observed performance differences.
+The goal of this study is to benchmark several numerical approaches for computing ERIs, listed here: on Cartesian and Becke grids in real space; a Poisson solver on a Cartesian grid; and, finally, on Cartesian and spherical $k$-space grids.
+We evaluate convergence behaviour, computational cost, and memory usage, and then, based on the results, analyze the mathematical reasons behind the observed performance differences.
 
 
 %==========================================================================
@@ -120,7 +122,7 @@ To evaluate integrals numerically, we replace the continuous integral with a wei
 \end{equation}
 where the choice of points $\{\mathbf{r}_i\}$ and weights $\{w_i\}$ determines both accuracy and efficiency.
 
-The simplest approach tiles a cubic domain $[-L, L]^3$ with $N^3$ equally spaced points. The spacing is $\Delta x = 2L/(N-1)$ and each weight is $w_i = (\Delta x)^3$. While straightforward, Cartesian grids waste points in empty regions far from the molecule and lack resolution near nuclei where the density varies rapidly. The error converges polynomially with $N$.
+The simplest approach is to tile the cubic domain $[-L, L]^3$ with $N^3$ equally spaced points. The spacing is $\Delta x = 2L/(N-1)$ and each weight is $w_i = (\Delta x)^3$. While straightforward, Cartesian grids waste points in empty regions far from the molecule and lack resolution near nuclei where the density varies rapidly. The error converges polynomially with $N$.
 
 \label{sec:becke}
 
@@ -131,7 +133,7 @@ Becke's partitioning scheme \cite{becke1988} decomposes the molecular integral i
 \end{equation}
 where $w_A(\mathbf{r})$ is the Becke weight function centred on atom $A$, satisfying $\sum_A w_A(\mathbf{r}) = 1$. Each atomic integral is evaluated on a product grid of radial (Gauss--Legendre or Gauss--Chebyshev) and angular (Lebedev) quadrature points, mapped via a radial transform $r = R\,h(x)$ that concentrates points near the nucleus. The Becke radial transform used in this work maps:
 \begin{equation}
-    r = R\,\frac{1 + x}{1 - x}, \quad x \in [-1, 1],
+ r = R\,\frac{1 + x}{1 - x}, \quad x \in [-1, 1],
     \label{eq:becke_rtransform}
 \end{equation}
 where $R$ is a scaling parameter (set to 1.5 bohr in our implementation). This naturally places more grid points in the chemically important region near the nuclei.
@@ -140,31 +142,31 @@ where $R$ is a scaling parameter (set to 1.5 bohr in our implementation). This n
 
 The brute-force approach discretises \eqref{eq:eri} directly:
 \begin{equation}
-    (\mu\nu|\lambda\sigma) \approx \sum_{i=1}^{N}\sum_{j \neq i}^{N} \frac{\rho_\mu\nu(\mathbf{r}_i)\,w_i\;\rho_{\lambda\sigma}(\mathbf{r}_j)\,w_j}{|\mathbf{r}_i - \mathbf{r}_j|},
+ (\mu\nu|\lambda\sigma) \approx \sum_{i=1}^{N}\sum_{j \neq i}^{N} \frac{\rho_\mu\nu(\mathbf{r}_i)\,w_i\;\rho_{\lambda\sigma}(\mathbf{r}_j)\,w_j}{|\mathbf{r}_i - \mathbf{r}_j|},
     \label{eq:direct}
 \end{equation}
 where $\rho_{\mu\nu}(\mathbf{r}) = \chi_\mu(\mathbf{r})\chi_\nu(\mathbf{r})$ is the overlap density. The self-interaction term ($i = j$) is excluded by setting the diagonal of the distance matrix to infinity. This method has $\mathcal{O}(N^2)$ complexity, where $N$ is the number of grid points, making it prohibitively expensive for large grids. Two variants are tested: one using a uniform Cartesian grid and one using the Becke molecular grid.
 
 For a uniform Cartesian grid with spacing $\Delta x$, the density is Fourier-transformed via the standard 3D FFT:
 \begin{equation}
-    \widetilde{\rho}(\mathbf{k}) = (\Delta x)^3 \sum_{\mathbf{n}} \rho(\mathbf{r}_\mathbf{n})\,e^{-i\mathbf{k}\cdot\mathbf{r}_\mathbf{n}}.
+ \widetilde{\rho}(\mathbf{k}) = (\Delta x)^3 \sum_{\mathbf{n}} \rho(\mathbf{r}_\mathbf{n})\,e^{-i\mathbf{k}\cdot\mathbf{r}_\mathbf{n}}.
     \label{eq:fft_forward}
 \end{equation}
 The ERI is then computed via Parseval's theorem applied to the Coulomb-weighted power spectrum:
 \begin{equation}
-    \text{ERI} = \frac{(\Delta k)^3}{(2\pi)^3}\sum_{\mathbf{k}} \frac{4\pi}{|\mathbf{k}|^2}\,|\widetilde{\rho}(\mathbf{k})|^2,
+ \text{ERI} = \frac{(\Delta k)^3}{(2\pi)^3}\sum_{\mathbf{k}} \frac{4\pi}{|\mathbf{k}|^2}\,|\widetilde{\rho}(\mathbf{k})|^2,
     \label{eq:fft_eri}
 \end{equation}
 where $\Delta k = 2\pi/(N\Delta x)$. The zero-frequency component ($\mathbf{k} = \mathbf{0}$) is excluded to avoid the Coulomb singularity. The FFT achieves $\mathcal{O}(N^3\log N)$ complexity for an $N^3$ grid. However, it requires a uniform grid, preventing adaptive refinement near nuclei.
 
 The one-step NUFFT method uses a Becke grid in real space and transforms directly to either a Cartesian or spherical $k$-space grid via the type-3 NUFFT:
 \begin{equation}
-    \widetilde{\rho}(\mathbf{k}_j) = \text{NUFFT}_3\!\left[\rho(\mathbf{r}_i)\,w_i;\;\mathbf{r}_i \to \mathbf{k}_j\right].
+ \widetilde{\rho}(\mathbf{k}_j) = \text{NUFFT}_3\!\left[\rho(\mathbf{r}_i)\,w_i;\;\mathbf{r}_i \to \mathbf{k}_j\right].
     \label{eq:nufft_forward}
 \end{equation}
 The ERI is then:
 \begin{equation}
-    \text{ERI} = \frac{1}{(2\pi)^3}\sum_j w_j^{(k)}\,\frac{4\pi}{|\mathbf{k}_j|^2}\,|\widetilde{\rho}(\mathbf{k}_j)|^2.
+ \text{ERI} = \frac{1}{(2\pi)^3}\sum_j w_j^{(k)}\,\frac{4\pi}{|\mathbf{k}_j|^2}\,|\widetilde{\rho}(\mathbf{k}_j)|^2.
     \label{eq:nufft_eri}
 \end{equation}
 For the spherical $k$-grid variant, the cancellation $w_j^{(k)} \propto k_j^2$ with $1/k_j^2$ simplifies the expression and removes the singularity, as discussed in \cref{sec:becke}.
@@ -240,12 +242,12 @@ The \textbf{spherical $k$-grid} uses $N$ Gauss--Legendre radial points on $[0, k
 
 The construction of the spherical $k$-space grid involves mapping Gauss--Legendre nodes from $[-1,1]$ to $[0, k_{\max}]$:
 \begin{equation}
-    k_i = \frac{k_{\max}}{2}(x_i + 1), \qquad w_i^{(\text{rad})} = w_i^{(\text{GL})}\,\frac{k_{\max}}{2},
+ k_i = \frac{k_{\max}}{2}(x_i + 1), \qquad w_i^{(\text{rad})} = w_i^{(\text{GL})}\,\frac{k_{\max}}{2},
     \label{eq:kgrid_map}
 \end{equation}
 where $(x_i, w_i^{(\text{GL})})$ are the standard Gauss--Legendre nodes and weights. The full three-dimensional grid is formed as the outer product of radial and angular grids:
 \begin{equation}
-    \mathbf{k}_{ij} = k_i\,\hat{\mathbf{n}}_j, \qquad w_{ij} = w_i^{(\text{rad})}\,w_j^{(\text{ang})}\,k_i^2,
+ \mathbf{k}_{ij} = k_i\,\hat{\mathbf{n}}_j, \qquad w_{ij} = w_i^{(\text{rad})}\,w_j^{(\text{ang})}\,k_i^2,
     \label{eq:kgrid_3d}
 \end{equation}
 where $\hat{\mathbf{n}}_j$ and $w_j^{(\text{ang})}$ are Lebedev unit vectors and weights.
@@ -255,7 +257,7 @@ where $\hat{\mathbf{n}}_j$ and $w_j^{(\text{ang})}$ are Lebedev unit vectors and
 
 All NUFFT evaluations use the type-3 transform from the FINUFFT library, which computes:
 \begin{equation}
-    F_j = \sum_{m=1}^{M} c_m\,e^{-i\,\mathbf{k}_j \cdot \mathbf{x}_m}, \quad j = 1, \ldots, N_k,
+ F_j = \sum_{m=1}^{M} c_m\,e^{-i\,\mathbf{k}_j \cdot \mathbf{x}_m}, \quad j = 1, \ldots, N_k,
     \label{eq:nufft_type3}
 \end{equation}
 where both the source points $\{\mathbf{x}_m\}$ and target points $\{\mathbf{k}_j\}$ are non-uniform. The tolerance parameter is set to $\varepsilon = 10^{-8}$ for the one-step method and $\varepsilon = 10^{-5}$ for the two-step method. The tighter tolerance in the one-step case is necessary because the entire ERI depends on a single transform, whereas the two-step method benefits from error cancellation between the forward and inverse transforms.
@@ -295,7 +297,7 @@ The left panel of \figref{fig:benchmark} reveals markedly different convergence 
 
 \paragraph{NUFFT one-step methods (4--5).} Both Cartesian and spherical $k$-grid variants benefit from the Becke grid in real space, giving them better resolution near the nuclei. The spherical $k$-grid variant (Method 5, dashed green) converges more smoothly than the Cartesian $k$-grid variant (Method 4) because the spherical quadrature is naturally suited to the isotropic Coulomb kernel, and the $k^2$ cancellation avoids singularity issues. At $N = 64$, Method 5 reaches errors near $10^{-2}$.
 
-\paragraph{Poisson two-step methods (6--7).} The two-step Poisson solver with a spherical $k$-grid (Method 7, dashed red) achieves the best convergence of all methods, reaching errors below $10^{-3}$ at moderate grid sizes and continuing to improve. This superiority arises because the two-step approach constructs a smooth real-space potential $V^{(g)}(\mathbf{r})$ before performing the final integration, which is more amenable to accurate numerical quadrature than the oscillatory $k$-space integrand in the one-step approach. The Cartesian $k$-grid variant (Method 6) also converges well but is hampered by the singularity at $\mathbf{k} = \mathbf{0}$.
+\paragraph{Poisson two-step methods (6--7).} The two-step Poisson solver with spherical $k$-grid (Method 7, dashed red) achieves the best convergence of all methods, reaching errors below $10^{-3}$ at moderate grid sizes and continuing to improve. This superiority arises because the two-step approach constructs a smooth real-space potential $V^{(g)}(\mathbf{r})$ before performing the final integration, which is more amenable to accurate numerical quadrature than the oscillatory $k$-space integrand in the one-step approach. The Cartesian $k$-grid variant (Method 6) also converges well but is hampered by the singularity at $\mathbf{k} = \mathbf{0}$.
 
 \subsection{Computational Cost}
 
@@ -303,7 +305,7 @@ The centre panel of \figref{fig:benchmark} shows wall-clock times on a logarithm
 
 The direct methods exhibit the steepest scaling, with times reaching nearly one second at $N = 32$ due to $\mathcal{O}(N^6)$ operations for the Cartesian grid. The FFT method scales as $\mathcal{O}(N^3 \log N)$ and is the fastest at small $N$, benefiting from highly optimised FFTW-based implementations. However, it requires $N^3$ grid points, so the absolute cost grows rapidly.
 
-The NUFFT methods (4--7) occupy an intermediate regime. Their cost is dominated by the type-3 NUFFT, which scales as $\mathcal{O}((M + N_k)\log(M + N_k))$ where $M$ is the number of real-space points and $N_k$ the number of $k$-space points. The spherical $k$-grid variants (5, 7) use fewer $k$-points than their Cartesian counterparts because the Lebedev grid is more compact than a Cartesian cube in $k$-space, giving them a consistent speed advantage. At large $N$, all NUFFT methods maintain sub-second runtimes.
+The NUFFT methods (4--7) occupy an intermediate regime. Their cost is dominated by the type-3 NUFFT, which scales as $\mathcal{O}((M + N_k)\log(M + N_k))$ where $M$ is the number of real-space points and $N_k$ the number of $k$-space points. The spherical $k$-grid variants (5, 7) use fewer $k$-points than their Cartesian counterparts because the Lebedev grid is more compact in $k$-space, giving them a consistent speed advantage. At large $N$, all NUFFT methods maintain sub-second runtimes.
 
 \subsection{Memory Usage}
 
@@ -314,17 +316,17 @@ The right panel shows peak memory consumption. Direct methods are memory-intensi
 \section{Discussion}
 \label{sec:discussion}
 %==========================================================================
-As observed in the figures, The superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) and Method 5 (one-step Nufft with spherical $k$-grid) can be understood from several mathematical perspectives. However, before we discuss there superiority, we have to address the fact that both of them have overlapping convergence rates. This is because mathematically, the two-step poisson method eventually takes the same form as the one-step method, but with an additional forward and inverse transform. Hence, the convergence rates are expected to be similar, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation, as explained below.
+As observed in the figures, the superior convergence of Method 7 (Poisson two-step with spherical $k$-grid) and Method 5 (one-step Nufft with spherical $k$-grid) can be understood from several mathematical perspectives. However, before we discuss their superiority, we need to acknowledge that both have overlapping convergence rates. This is because mathematically, the two-step Poisson method eventually takes the same form as the one-step method, but with an additional forward and inverse transform. Hence, the convergence rates are expected to be similar, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation, as explained below.
 
 First, the two-step formulation separates the forward transform, kernel application, and inverse transform into distinct stages. This means the NUFFT approximation error enters twice but affects different quantities: the forward transform approximates $\widetilde{G}(\mathbf{k})$ and the inverse transform reconstructs $V^{(g)}(\mathbf{r})$. Because $V^{(g)}(\mathbf{r})$ is a smooth Coulomb potential (no cusps or singularities away from the nuclei), the inverse NUFFT achieves high accuracy, and the final real-space integration on the Becke grid is exact to high order.
 
 Second, the spherical $k$-grid exploits the isotropy of the Coulomb kernel. The $4\pi/k^2$ factor depends only on $|\mathbf{k}|$, so a grid with Gauss--Legendre points in the radial direction achieves exponential convergence for smooth radial integrands. In contrast, a Cartesian $k$-grid wastes points in the corners of the cube where $|\mathbf{k}|$ is large, and the integrand is negligible.
 
-Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned unlike the direct methods.
+Third, the analytical cancellation of $k^2$ between the Jacobian and the Coulomb kernel (\eqref{eq:sph_weights,eq:coulomb_ft}) means the effective integrand in $k$-space is $4\pi\,|\widetilde{G}(\mathbf{k})|^2$ weighted by the base quadrature weights, without any singular factor. This makes the quadrature inherently well-conditioned, unlike the direct methods.
 
-Hence, the direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the distance matrix diagonal to infinity) is a necessary but imperfect remedy.
+Hence, the direct methods, while conceptually simple, suffer from two compounding issues. The $\mathcal{O}(N^2)$ pairwise summation is inherently expensive, and the discretisation of the $1/r$ singularity introduces systematic errors that diminish slowly with grid refinement. The self-interaction exclusion (setting the diagonal of the distance matrix to infinity) is a necessary but imperfect remedy.
 
-The uniform FFT method is limited by its inability to adapt to the molecular geometry. All points of the density profile, including the near-nuclear cusps, must be resolved by the same uniform spacing. This results in either insufficient resolution (if $N$ is small) or excessive memory and compute (if $N$ is large enough to resolve the cusps).
+The uniform FFT method is limited by its inability to adapt to the molecular geometry. All points of the density profile, including the near-nuclear cusps, must be resolved by the same uniform spacing. This results in either insufficient resolution (if $N$ is small) or excessive memory and computation (if $N$ is large enough to resolve the cusps).
 
 A consistent finding across both the one-step and two-step methods is the superiority of spherical $k$-grids. This can be quantified by comparing the number of grid points required: a Cartesian $k$-grid with $N_k$ points per dimension uses $N_k^3$ total points, whereas the spherical grid uses approximately $N_{\text{rad}} \times N_{\text{ang}}$ points, where $N_{\text{ang}}$ is typically a few hundred (from the Lebedev grid). For the same accuracy, the spherical grid requires one to two orders of magnitude fewer points.
 
@@ -338,7 +340,7 @@ The NUFFT tolerance parameter $\varepsilon$ plays a critical role. In the one-st
 \label{sec:conclusion}
 %==========================================================================
 
-In order to reduce complex electron repulsion integrals with time complexity reaching upto $\mathcal{O}(N^2)$ we have to utilize numerical methods to calculate these integrals. Overall, a construction of these integrals is first done analytically using GTO orbitals in PySCF. In order to calculate these integrals numerically, we have to discretize the integral using quadrature rules. We have used three types of grids: Cartesian, Becke and spherical. The Cartesian grid is a simple uniform grid that covers a cubic domain, while the Becke grid is an atom-centred grid that concentrates points near the nuclei, and the spherical grid is a non-uniform grid in $k$-space that exploits the isotropy of the Coulomb kernel. Methods utilizing fourier transforms (FFT and NUFFT) are used to compute the ERIs in $k$-space, while direct summation methods are used in real space. The two-step Poisson--NUFFT method is a hybrid approach that first computes an intermediate potential in $k$-space and then transforms back to real space for final integration. Two-step poisson method with spherical $k$-grid achieves the best convergence and accuracy due to its ability to handle the Coulomb singularity and exploit the isotropy of the kernel. The one-step NUFFT method with spherical $k$-grid also performs well, but is limited by the single transform approximation. Direct methods and uniform FFT are less accurate and less efficient due to their inability to adapt to the molecular geometry and handle singularities effectively. Results of the experiment show that both NUFFT techniques show used superior convergence and accuracy compared to direct methods and uniform FFT. However, two-step and one-step methods show similar convergence rates, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation.
+To reduce the time complexity of complex electron repulsion integrals, which can reach $\mathcal{O}(N^2)$, we must use numerical methods to evaluate them. Overall, these integrals are first constructed analytically using GTO orbitals in PySCF. To calculate these integrals numerically, we have to discretize the integral using quadrature rules. We have used three types of grids: Cartesian, Becke, and spherical. Methods utilizing Fourier transforms (FFT and NUFFT) are used to compute the ERIs in $k$-space, while direct summation methods are used in real space. The two-step Poisson--NUFFT method is a hybrid approach that first computes an intermediate potential in $k$-space and then transforms back to real space for final integration. The two-step Poisson method with a spherical $k$-grid achieves the best convergence and accuracy due to its ability to handle the Coulomb singularity and to exploit the kernel's isotropy. The one-step NUFFT method with a spherical $k$-grid also performs well but is limited by the single-transform approximation. Direct methods and uniform FFTs are less accurate and less efficient because they cannot adapt to molecular geometry and handle singularities effectively. Results of the experiment show that both NUFFT techniques show superior convergence and accuracy compared to direct methods and uniform FFT. However, two-step and one-step methods show similar convergence rates, but the two-step method benefits from error cancellation and better conditioning due to the intermediate potential representation.
 
 \nocite{*}
 \renewcommand{\bibname}{References}
