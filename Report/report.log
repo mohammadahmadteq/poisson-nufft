@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.7)  15 MAR 2026 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1304,35 +1304,11 @@ Package hyperref Info: Link coloring OFF on input line 22.
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 25
-.
-
-(/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
-
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
-
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less.
-(fancyhdr)                Please consider using the `twoside' option on input l
-ine 26.
-
-
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less.
-(fancyhdr)                Please consider using the `twoside' option on input l
-ine 26.
+<LogoUniBayreuth.jpg, id=75, 267.76035pt x 82.74915pt>
+File: LogoUniBayreuth.jpg Graphic file (type jpg)
+<use LogoUniBayreuth.jpg>
+Package pdftex.def Info: LogoUniBayreuth.jpg  used on input line 28.
+(pdftex.def)             Requested size: 85.35826pt x 26.37924pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1344,7 +1320,40 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
 ts/enc/dvips/cm-super/cm-super-t1.enc}
 
-]
+ <./LogoUniBayreuth.jpg>]
+
+! LaTeX Error: \begin{document} ended by \end{titlepage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51 \end{titlepage}
+                    
+? 
+! Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.51 \end{titlepage}
+                    
+? 
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 57
+.
+(/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1352,7 +1361,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2] (./report.toc)
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.61 \newpage
+              [1] (./report.toc)
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
@@ -1364,8 +1379,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[3]
-Overfull \hbox (8.31139pt too wide) in paragraph at lines 77--79
+[2]
+Overfull \hbox (8.31139pt too wide) in paragraph at lines 105--107
 \T1/cmr/m/n/12 This equa-tion trans-forms the six-dimensional in-te-gral in [][
 ] into a prod-uct of three-dimensional
  []
@@ -1377,7 +1392,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
+[3]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [4]
+! Undefined control sequence.
+l.200 ...es the singularity, as discussed in \cref
+                                                  {sec:becke}.
+? 
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 206.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1387,21 +1416,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [5]
 ! Undefined control sequence.
-l.172 ...es the singularity, as discussed in \cref
-                                                  {sec:becke}.
-? 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 178.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[6]
-! Undefined control sequence.
-l.220 ...f grids are employed, summarised in \cref
+l.248 ...f grids are employed, summarised in \cref
                                                   {tab:grids}.
 ? 
 
@@ -1411,8 +1426,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[7{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (8.50415pt too wide) in paragraph at lines 241--242
+[6{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Overfull \hbox (8.50415pt too wide) in paragraph at lines 269--270
 []\T1/cmr/m/n/12 The \T1/cmr/bx/n/12 spher-i-cal $\OML/cmm/m/it/12 k$\T1/cmr/bx
 /n/12 -grid \T1/cmr/m/n/12 uses $\OML/cmm/m/it/12 N$ \T1/cmr/m/n/12 Gauss--Lege
 ndre ra-dial points on $\OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; k[]\OT1/cmr/m/n/12
@@ -1427,19 +1442,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[8]
+[7]
 ! Undefined control sequence.
-l.281 \figref
+l.309 \figref
              {fig:benchmark} presents the benchmark results across all seven...
 
 ? 
 <eri_benchmark.png, id=184, 1849.6302pt x 552.6246pt>
 File: eri_benchmark.png Graphic file (type png)
 <use eri_benchmark.png>
-Package pdftex.def Info: eri_benchmark.png  used on input line 285.
+Package pdftex.def Info: eri_benchmark.png  used on input line 313.
 (pdftex.def)             Requested size: 469.47049pt x 140.2639pt.
 ! Undefined control sequence.
-l.292 The left panel of \figref
+l.320 The left panel of \figref
                                {fig:benchmark} reveals markedly different co...
 
 ? 
@@ -1450,9 +1465,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[9 <./eri_benchmark.png>]
+[8 <./eri_benchmark.png>]
 ! Undefined control sequence.
-l.304 The centre panel of \figref
+l.332 The centre panel of \figref
                                  {fig:benchmark} shows wall-clock times on a...
 
 ? 
@@ -1463,13 +1478,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10]
+[9]
 
-LaTeX Warning: Reference `eq:sph_weights' on page 11 undefined on input line 32
-5.
+LaTeX Warning: Reference `eq:sph_weights' on page 10 undefined on input line 35
+3.
 
 
-Overfull \hbox (0.35399pt too wide) in paragraph at lines 333--334
+Overfull \hbox (0.35399pt too wide) in paragraph at lines 361--362
 []\T1/cmr/m/n/12 Furthermore, the Carte-sian $\OML/cmm/m/it/12 k$\T1/cmr/m/n/12
  -grid in-tro-duces a reg-u-lar-i-sa-tion prob-lem at $\OT1/cmr/bx/n/12 k \OT1/
 cmr/m/n/12 = \OT1/cmr/bx/n/12 0$ \T1/cmr/m/n/12 (the Coulomb
@@ -1482,8 +1497,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[11]
-Overfull \hbox (4.21344pt too wide) in paragraph at lines 347--347
+[10]
+Overfull \hbox (4.21344pt too wide) in paragraph at lines 375--375
 \T1/cmr/m/n/12 In: \T1/cmr/m/it/12 Wi-ley In-ter-dis-ci-plinary Re-views: Com-p
 u-ta-tional Molec-u-lar Sci-ence \T1/cmr/m/n/12 8.1 (2018), e1340.
  []
@@ -1495,8 +1510,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[12]
-Overfull \hbox (3.11534pt too wide) in paragraph at lines 347--347
+[11]
+Overfull \hbox (3.11534pt too wide) in paragraph at lines 375--375
 \T1/cmr/m/n/12 tional The-ory Cal-cu-la-tions. In: \T1/cmr/m/it/12 The Jour-nal
  of Chem-i-cal Physics \T1/cmr/m/n/12 104.7 (1996), pp. 2620^^U
  []
@@ -1508,7 +1523,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[13] (./report.aux)
+[12] (./report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1517,9 +1532,6 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 15A27ACE373C23808925D1BF12BF813C;2319.
 Package logreq Info: Writing requests to 'report.run.xml'.
@@ -1527,11 +1539,11 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45005 strings out of 469515
- 985597 string characters out of 5470808
- 1919386 words of memory out of 5000000
- 72938 multiletter control sequences out of 15000+600000
- 652483 words of font info for 105 fonts, out of 8000000 for 9000
+ 44998 strings out of 469515
+ 985669 string characters out of 5470808
+ 1919135 words of memory out of 5000000
+ 72933 multiletter control sequences out of 15000+600000
+ 649384 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,108p,1579b,1847s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
@@ -1549,7 +1561,7 @@ e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
 per/sfbx1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pf
 b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts
-/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/c
+/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/c
 m-super/sfcc1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm080
 0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/f
@@ -1558,10 +1570,10 @@ ic/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfs
 x1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr
 /share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-di
 st/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 816015 bytes).
+Output written on report.pdf (13 pages, 1162107 bytes).
 PDF statistics:
  379 PDF objects out of 1000 (max. 8388607)
- 300 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 299 compressed objects within 3 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 
